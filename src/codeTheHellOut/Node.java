@@ -1,13 +1,16 @@
 package codeTheHellOut;
 
-public class Node {
+import java.util.ArrayList;
+
+public class Node <T> {
 	
-	int Value;
-	Node next;
+	
+	T Value;
+	Node<T> next;
 	
 	public Node()
 	{
-		Value =0;
+		Value = null;
 		next = null;
 	}
 

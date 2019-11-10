@@ -6,9 +6,9 @@ package codeTheHellOut;
  * Complexity of Searching is o(n)
  */
 
-public class Queue {
+public class Queue<T> {
 	
-	Node root;
+	Node<T> root;
 	
 	
 	
@@ -18,22 +18,22 @@ public class Queue {
 	}
 	
 	
-	public void Enqueue(int Value)
+	public void Enqueue(T Value)
 	{
 		if(root == null)
 		{
-		root = new Node();
+		root = new Node<T>();
 		root.Value = Value;		
 		}
 		else
 		{
-			Node Traverse = root;
+			Node<T> Traverse = root;
 			while(Traverse.next != null)
 			{
 				Traverse = Traverse.next;
 			
 			}
-			Traverse.next = new Node();
+			Traverse.next = new Node<T>();
 			Traverse = Traverse.next;
 			Traverse.Value = Value;
 			
@@ -53,7 +53,7 @@ public class Queue {
 		}
 	}
 	
-	public boolean search(int Value)
+	public boolean search(T Value)
 	{
 		if(root == null)
 		{
@@ -61,7 +61,7 @@ public class Queue {
 		}
 		else
 		{
-			Node Traverse = root;
+			Node<T> Traverse = root;
 			while(Traverse != null)
 			{
 				if(Traverse.Value == Value)

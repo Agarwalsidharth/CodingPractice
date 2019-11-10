@@ -1,6 +1,6 @@
 package codeTheHellOut;
 
-public class Stack {
+public class Stack <T>{
 	
 	/* Complexity of pushing a Node to Stack O(1)
 	 * Complexity of popping a Node from Stack O(1)
@@ -10,31 +10,34 @@ public class Stack {
 	
 	
 	
-	Node root;
+     Node<T> root;
+	int size;
 	
-	
-	public void Stack()
+	public Stack()
 	{
 		root = null;
+		size = 0;
 	}
 	
-	public void push(int Value)
+	public void push(T Value)
 	{
 		if(root==null)
 		{
-			root = new Node();
+			root = new Node<T>();
 			root.Value = Value;
 		}
 		else
 		{
-			Node add = new Node();
+			Node<T> add = new Node<T>();
 			add.next = root;
 			add.Value = Value;
+			root = add;
 		}
+		size++;
 	}
 	
 	
-	public void pop()
+	public T pop()
 	{
 		if(root==null)
 		{
@@ -42,13 +45,16 @@ public class Stack {
 		}
 		else
 		{
+			T Object = root.Value;
 			root = root.next;
+			return Object;
 		}
-		
+		size--;
+		return null;
 	}
 	
 	
-	public boolean search(int Value)
+	public boolean search(T Value)
 	{
 		if(root == null)
 		{
@@ -56,7 +62,7 @@ public class Stack {
 		}
 		else
 		{
-			Node Traverse = root;
+			Node<T> Traverse = root;
 			while(Traverse != null)
 			{
 				if(Traverse.Value == Value)
@@ -69,5 +75,31 @@ public class Stack {
 		}
 		return false;
 	}
+	
+	
+	public boolean isEmpty()
+	{
+		if(root==null)
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	
+	public T peek()
+	{
+		if(root == null)
+		{
+			return null;
+		}
+		else
+		{
+			return root.Value;
+		}
+	}
+	
+	
 
 }
