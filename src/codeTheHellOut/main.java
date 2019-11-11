@@ -12,8 +12,7 @@ public class main {
 		tree.root =  tree.AddNode(tree.root,10);
 		tree.root =  tree.AddNode(tree.root,5);
 		
-		 
-		 new AvlDFSRecursion().postorder(tree.root);
+		
 		
 		// TODO Auto-generated method stub
 

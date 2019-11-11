@@ -1,5 +1,7 @@
 package codeTheHellOut;
 
+import java.util.List;
+
 public class AvlTree {
 
 	AvlTreeNode root;
@@ -107,6 +109,140 @@ public class AvlTree {
 			
 		}
 		
+	}
+	
+	
+	
+	
+	public AvlTreeNode deleteNode(AvlTreeNode root, int Value)
+	{
+		if(root == null)
+		{
+			return null;
+		}
+		
+		else if(root.Value > Value)
+		{
+			root.left = deleteNode(root.left,Value);
+		}
+		else if(root.Value < Value)
+		{
+			root.right = deleteNode(root.right,Value);
+		}
+		else if(root.Value == Value)
+		{
+			if(root.right == null && root.left == null)
+				root = null;
+			else if(root.right == null)
+			{
+				root = root.left;
+			}
+			else if(root.left == null)
+			{
+				root = root.right;
+			}
+			else
+			{
+				AvlTreeNode left = findleft(root.left);
+				root.Value = left.Value;
+				root.left  = deleteNode(root.left,left.Value);
+				
+			}
+		}
+		
+		int balance = Height(root.left) - Height(root.right);
+		if(balance > 1)
+		{
+			if(Height(root.left.left) > Height(root.left.right))
+			{
+				root = RotateRight(root);
+			}
+			else
+			{
+				root.left = RotateLeft(root.left);
+				root = RotateRight(root);
+			}
+		}
+		else if( balance < -1)
+		{
+			if(Height(root.right.right) > Height(root.right.left))
+			{
+				root = RotateLeft(root);
+			}
+			else
+			{
+				root.right = RotateRight(root.right);
+				root = RotateLeft(root);
+			}
+		}
+		
+		root.height = 1+Math.max(Height(root.left), Height(root.right));
+		return root;
+		
+	}
+	
+	
+	public boolean isBST(AvlTreeNode root,int high, int low)
+	{
+		if(root==null)
+		{
+			return true;
+		}
+		else if(root.Value >= low && root.Value <= high)
+		{
+			return isBST(root.left,root.Value,low) && isBST(root.right,high,root.Value);
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+	public List<Integer> sumBST(AvlTreeNode root,List<Integer> path, int Value)
+	{
+		if(Value == 0)
+		{
+			return path;
+		}
+		else if(root==null && Value > 0)
+		{
+			return null;
+		}
+		else if(root.Value > Value)
+		{
+			return null;
+		}
+		else
+		{
+			Value = Value-root.Value;
+			if(sumBST(root.left,path,Value) != null)
+			{
+				path.add(root.Value);
+				return path;
+			}
+			else if (sumBST(root.right,path,Value) != null)
+			{
+				path.add(root.Value);
+				return path;
+			}
+			else
+			{
+				return null;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	public AvlTreeNode findleft(AvlTreeNode root)
+	{
+		if(root.right == null)
+			return root;
+		else
+			return findleft(root.right);
 	}
 	
 	
