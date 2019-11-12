@@ -9,21 +9,9 @@ public class TrieNode {
 	Map<Character, TrieNode> children = null; 
 	boolean endofworld;
 	
+public TrieNode()
+{
+	endofworld = false;
+}
 
-	
-	
-	public void Add(Map<Character, TrieNode> children, String input)
-	{
-		
-		
-		
-	
-	}
-	
-	
-	
-	
-	
-	
-	
 }
