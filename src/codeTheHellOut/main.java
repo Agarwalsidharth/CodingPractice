@@ -16,18 +16,18 @@ public class main {
 		
 		*/
 		// TODO Auto-generated method stub
-
+		
+		MaxHeap Heap = new MaxHeap();
+		
+		Heap.AddValue(9);
+		Heap.AddValue(12);
+		Heap.AddValue(29);
+		Heap.AddValue(8);
+		
+		for(int i=0;i<Heap.Size();i++)
+		{
+			System.out.println(Heap.get(i));
+		}
 		 
-		 int[] Values = {18,90,54,12,1,87};
-		 
-		 
-	new MergeSort().Sort(Values);
-		 
-	for(int i=0;i<Values.length;i++)
-	{
-	System.out.println(Values[i]);
 	}
-	
-	}
-
 }
